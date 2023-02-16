@@ -1,4 +1,3 @@
-
 '''Data Encryption System: Rahul wants to send encoded messages to his friend Ram. Develop an algorithm to encode all the digits, special characters, lower and upper case alphabets.
 
 Here's one way to encode characters in a message:
@@ -32,9 +31,12 @@ def encode_message(message):
     for char in message:
         if char == ' ':
             encoded_message+=' '
-            decoded_message+=' '
         else:
             encoded_message += mapping[char]
+    for char in encoded_message:
+        if char==' ':
+            decoded_message+=' '
+        else:
             decoded_message+=decoding[mapping[char]]
     return encoded_message,decoded_message
 
