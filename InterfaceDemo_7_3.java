@@ -52,7 +52,7 @@ class MyClass extends BaseClass implements CombinedInterface {
     }
 }
 
-public class InterfaceDemo {
+public class InterfaceDemo_7_3{
     // Method that takes an object of any of the four interfaces
     public static void method1(Interface1 obj) {
         obj.method1();
