@@ -1,3 +1,4 @@
+/*4. Create a Cycle interface, with implementations Unicycle, Bicycle and Tricycle. Create factories for each type of Cycle, and code that uses these factories.*/
 interface Cycle {
     void ride();
 }
@@ -42,7 +43,7 @@ class Tricycle implements Cycle {
     };
 }
 
-public class CycleFactoryDemo {
+public class Java7_4 {
     public static void rideCycle(CycleFactory factory) {
         Cycle cycle = factory.getCycle();
         cycle.ride();
@@ -54,3 +55,7 @@ public class CycleFactoryDemo {
         rideCycle(Tricycle.factory);
     }
 }
+/*Riding a Unicycle.
+Riding a Bicycle.
+Riding a Tricycle.
+*/
