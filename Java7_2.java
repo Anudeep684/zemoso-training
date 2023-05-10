@@ -1,53 +1,62 @@
-class Cycle {
-    void ride() {
-        System.out.println("Riding Cycle");
-    }
+/*2. Create a Cycle class, with subclasses Unicycle, Bicycle and Tricycle. Add a balance( ) method to Unicycle and Bicycle, but not to Tricycle. 
+Create instances of all three types and upcast them to an array of Cycle. Try to call balance( ) on each element of the array and observe the results. 
+Downcast and call balance( ) and observe what happens.*/
+interface Cycle {
+    void ride();
 }
 
-class Unicycle extends Cycle {
-    void ride() {
-        System.out.println("Riding Unicycle");
-    }
-    
-    void balance() {
-        System.out.println("Balancing on Unicycle");
-    }
+interface CycleFactory {
+    Cycle getCycle();
 }
 
-class Bicycle extends Cycle {
-    void ride() {
-        System.out.println("Riding Bicycle");
+class Unicycle implements Cycle {
+    public void ride() {
+        System.out.println("Riding a Unicycle.");
     }
-    
-    void balance() {
-        System.out.println("Balancing on Bicycle");
-    }
-}
 
-class Tricycle extends Cycle {
-    void ride() {
-        System.out.println("Riding Tricycle");
-    }
-}
-
-public class Java7_2 {
-    public static void main(String[] args) {
-        Cycle[] cycles = { new Unicycle(), new Bicycle(), new Tricycle() };
-
-        // Upcasting
-        for (Cycle cycle : cycles) {
-            cycle.ride();
-            // This won't compile: cycle.balance();
+    public static CycleFactory factory = new CycleFactory() {
+        public Cycle getCycle() {
+            return new Unicycle();
         }
+    };
+}
 
-        // Downcasting
-        Unicycle uni = (Unicycle) cycles[0];
-        Bicycle bike = (Bicycle) cycles[1];
-        Tricycle tri = (Tricycle) cycles[2];
+class Bicycle implements Cycle {
+    public void ride() {
+        System.out.println("Riding a Bicycle.");
+    }
 
-        uni.balance();
-        bike.balance();
+    public static CycleFactory factory = new CycleFactory() {
+        public Cycle getCycle() {
+            return new Bicycle();
+        }
+    };
+}
 
-        // This won't compile: tri.balance();
+class Tricycle implements Cycle {
+    public void ride() {
+        System.out.println("Riding a Tricycle.");
+    }
+
+    public static CycleFactory factory = new CycleFactory() {
+        public Cycle getCycle() {
+            return new Tricycle();
+        }
+    };
+}
+
+public class CycleFactoryDemo {
+    public static void rideCycle(CycleFactory factory) {
+        Cycle cycle = factory.getCycle();
+        cycle.ride();
+    }
+
+    public static void main(String[] args) {
+        rideCycle(Unicycle.factory);
+        rideCycle(Bicycle.factory);
+        rideCycle(Tricycle.factory);
     }
 }
+/*Riding a Unicycle.
+Riding a Bicycle.
+Riding a Tricycle.*/
