@@ -29,5 +29,14 @@ public class Java2 {
         return letters.size() == 26;
     }
 }
-//time complexity: O(n)
-//space complexity: O(1)
+
+
+/*Output:
+C:\Zemoso Work\Java assignments>javac Java2.java
+
+C:\Zemoso Work\Java assignments>java Java2
+The input string does not contain all the letters of the alphabet.
+*/
+
+//Time complexity: O(n)
+//Space complexity: O(1)
