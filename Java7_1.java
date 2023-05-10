@@ -1,3 +1,7 @@
+/*1. Create an inheritance hierarchy of Rodent: Mouse, Gerbil, Hamster,etc. In the base class, provide methods that are common to all Rodents, and 
+override these in the derived classes to perform different behaviors depending on the specific type of Rodent. Create an array of Rodent, fill it with 
+different specific types of Rodents, and call your base-class methods to see what happens.
+Make the methods of Rodent abstract whenever possible and all classes should have default constructors that print a message about that class.*/
 abstract class Rodent {
     Rodent() {
         System.out.println("This is a rodent.");
@@ -42,7 +46,7 @@ class Hamster extends Rodent {
     }
 }
 
-public class RodentHierarchy {
+public class Java7_1 {
     public static void main(String[] args) {
         Rodent[] rodents = new Rodent[3];
         rodents[0] = new Mouse();
@@ -55,3 +59,16 @@ public class RodentHierarchy {
         }
     }
 }
+/*This is a rodent.
+This is a mouse.
+This is a rodent.
+This is a gerbil.
+This is a rodent.
+This is a hamster.
+Mouse is eating.
+Mouse is running.
+Gerbil is eating.
+Gerbil is running.
+Hamster is eating.
+Hamster is running.
+    */
