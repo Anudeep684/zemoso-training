@@ -1,4 +1,4 @@
-//2. Create a class with two (overloaded) constructors. Using this, call the second constructor inside the first one.
+//(6)2. Create a class with two (overloaded) constructors. Using this, call the second constructor inside the first one.
 public class Java6_2 {
     private int x;
     private String y;
