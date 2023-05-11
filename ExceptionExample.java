@@ -2,7 +2,7 @@
 that will catch all three types of exceptions.
 Add a finally clause and verify that your finally clause is executed, even if a NullPointerException is thrown.*/
 
-public class ExceptionExample {
+public class Java8 {
 
     // Custom exceptions
     static class CustomException1 extends Exception {
@@ -49,11 +49,12 @@ public class ExceptionExample {
 
 
 /*Output:
-C:\Zemoso Work\Java assignments>javac ExceptionExample.java
+C:\Zemoso Work\Java assignments>javac Java8.java
 
-C:\Zemoso Work\Java assignments>java ExceptionExample
-Caught exception: Custom Exception 1
+C:\Zemoso Work\Java assignments>java Java8
+Caught exception: Custom Exception 3
 Finally block executed.
 */
+
 
 
