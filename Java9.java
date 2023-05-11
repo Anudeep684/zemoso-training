@@ -15,3 +15,10 @@ public class Java9 {
         }
     }
 }
+
+/*Output:
+C:\Zemoso Work\Java assignments>javac Java9.java
+
+C:\Zemoso Work\Java assignments>java Java9
+The sentence matches the pattern.
+*/
