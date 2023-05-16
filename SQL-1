@@ -1,0 +1,143 @@
+//SQL Assignment-1
+1)Find out the PG-13 rated comedy movies.DO NOT use the film_list table.
+
+SELECT f.title
+FROM film AS f
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+WHERE f.rating = 'PG-13' AND c.name = 'Comedy';
+
+
+Output:
+title
+AIRPLANE SIERRA
+ANTHEM LUKE
+FLINTSTONES HAPPINESS
+FREEDOM CLEOPATRA
+GROUNDHOG UNCUT
+KNOCK WARLOCK
+PARADISE SABRINA
+PERFECT GROOVE
+RUSHMORE MERMAID
+SADDLE ANTITRUST
+STRICTLY SCARFACE
+TRAINSPOTTING STRANGERS
+
+/*
+This query joins the 'film', 'film_category', and 'category' tables 
+together and selects the titles of all movies where the rating 
+is 'PG-13' and the category name is 'Comedy'.
+*/
+
+-------------------------------------------------------------------------------
+
+2)Find out the top 3 rented horror movies.
+
+SELECT f.title, COUNT(*) AS rental_count
+FROM film AS f
+JOIN inventory AS i ON f.film_id = i.film_id
+JOIN rental AS r ON i.inventory_id = r.inventory_id
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+WHERE c.name = 'Horror'
+GROUP BY f.film_id
+ORDER BY rental_count DESC
+LIMIT 3;
+
+Output:
+title			rental_count
+PULP BEVERLY	30
+FAMILY SWEET	29
+SWARM GOLD		27
+
+
+/*This query joins the 'film', 'inventory', 'rental', 'film_category', 
+  and 'category' tables together and selects the top 3 horror movies
+  based on the number of times they were rented.
+ 
+ The WHERE clause filters the movies to only include those in the
+ 'Horror' category, while the GROUP BY clause groups the rentals 
+  by movie. The COUNT(*) function counts the number of rentals for
+  each movie, and the ORDER BY clause sorts the movies in descending
+  order based on rental count. Finally, the LIMIT clause limits the 
+  result set to the top 3 movies.
+*/
+
+-------------------------------------------------------------------------------
+
+3)Find out the list of customers from India who have rented sports movies.
+
+SELECT c.first_name, c.last_name, f.title
+FROM customer AS c
+JOIN rental AS r ON c.customer_id = r.customer_id
+JOIN inventory AS i ON r.inventory_id = i.inventory_id
+JOIN film AS f ON i.film_id = f.film_id
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS ca ON fc.category_id = ca.category_id
+JOIN address AS a ON c.address_id = a.address_id
+JOIN city AS ct ON a.city_id = ct.city_id
+JOIN country AS co ON ct.country_id = co.country_id
+WHERE co.country = 'India' AND ca.name = 'Sports';
+
+
+Output:
+first_name	last_name	movies
+LENA		JENSEN	ALADDIN CALENDAR
+SAMUEL	MARLOW	ALADDIN CALENDAR
+WAYNE		TRUONG	ALADDIN CALENDAR
+ADAM		GOOCH		ALADDIN CALENDAR
+SHANNON	FREEMAN	ANONYMOUS HUMAN
+DWAYNE	OLVERA	ARTIST COLDBLOODED
+TIM		CARY		ARTIST COLDBLOODED
+NAOMI		JENNINGS	CALIFORNIA BIRDS
+
+
+/*
+This query joins the 'customer', 'rental', 'inventory', 'film', 
+'film_category','category', 'address', 'city', and 'country' 
+ tables together to get the list of customers from India 
+ who have rented sports movies.
+
+ The WHERE clause filters the results to only include customers 
+ from India and sports movies. The SELECT clause selects the 
+ first name, last name, and title of the movie rented by each customer.
+*/
+
+-------------------------------------------------------------------------------
+
+4)Find out the list of customers from Canada who have rented "NICK WAHLBERG" movies.
+SELECT c.customer_id, c.first_name, c.last_name
+FROM customer AS c
+JOIN rental AS r ON c.customer_id = r.customer_id
+JOIN inventory AS i ON r.inventory_id = i.inventory_id
+JOIN film AS f ON i.film_id = f.film_id
+JOIN film_actor AS fa ON f.film_id = fa.film_id
+JOIN actor AS a ON fa.actor_id = a.actor_id
+JOIN address AS ad ON c.address_id = ad.address_id
+JOIN city AS ci ON ad.city_id = ci.city_id
+JOIN country AS co ON ci.country_id = co.country_id
+WHERE co.country = 'Canada' AND a.first_name = 'NICK' AND a.last_name ='WAHLBERG';
+
+-------------------------------------------------------------------------------
+
+5)Find out the number of movies in which "SEAN WILLIAMS" acted.
+
+SELECT COUNT(*) 
+FROM film_actor 
+WHERE actor_id IN (
+  SELECT actor_id 
+  FROM actor 
+  WHERE first_name = 'SEAN' AND last_name = 'WILLIAMS'
+)
+
+//Output : 26
+
+/*
+This query counts the number of films in which Sean Williams acted by 
+first selecting all actor IDs for the actor with the given first and
+last name, and then selecting all rows from the film_actor table 
+where the actor_id matches one of these IDs. 
+The resulting count is the number of films in which Sean Williams acted.
+*/
+
+-------------------------------------------------------------------------------
