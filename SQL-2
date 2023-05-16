@@ -1,0 +1,117 @@
+//SQL Assignment-2
+
+1)Find out the number of documentaries with deleted scenes.
+
+SELECT COUNT(*) AS num_documentaries_with_deleted_scenes
+FROM film AS f
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+WHERE c.name = 'Documentary'
+  AND f.special_features LIKE '%Deleted Scenes%'
+
+Output:
+num_documentaries_with_deleted_scenes
+34
+
+/*
+This query counts the number of rows in the film table where
+the category_id matches the category_id of the 'Documentary' 
+category, and the special_features column contains the text
+'Deleted Scenes'. The result is returned as num_documentaries_with_deleted_scenes.
+*/
+-------------------------------------------------------------------------------
+
+2)Find out the number of sci-fi movies rented by the store managed by Jon Stephens.
+  
+SELECT COUNT(*) AS num_sci_fi_movies_rented
+FROM store AS s
+JOIN staff AS st ON s.store_id = st.store_id
+JOIN rental AS r ON st.staff_id = r.staff_id
+JOIN inventory AS i ON r.inventory_id = i.inventory_id
+JOIN film AS f ON i.film_id = f.film_id
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+WHERE st.first_name = 'Jon' AND st.last_name = 'Stephens'
+  AND c.name = 'Sci-Fi'
+
+Output:
+num_sci_fi_movies_rented
+548
+
+/*
+This query counts the number of rows in the film table where the film is in the
+sci-fi genre and has been rented by the store managed by Jon Stephens.
+The result is returned as num_sci_fi_movies_rented.
+*/
+
+-------------------------------------------------------------------------------
+
+3)Find out the total sales from Animation movies.
+
+SELECT SUM(f.rental_rate) AS total_sales
+FROM film AS f
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+JOIN inventory AS i ON f.film_id = i.film_id
+JOIN rental AS r ON i.inventory_id = r.inventory_id
+WHERE c.name = 'Animation'
+
+Output:
+total_sales
+3218.34
+
+/*
+ To find out the total sales from Animation movies, we can join multiple
+ tables in the Sakila database, including the film, film_category,
+ category, inventory, rental, and payment tables. 
+*/
+
+-------------------------------------------------------------------------------
+
+4)Find out the top 3 rented category of movies by "PATRICA JOHNSON"
+
+SELECT c.first_name, c.last_name, ca.name AS category_name, COUNT(*) AS rental_count
+FROM customer AS c
+JOIN rental AS r ON c.customer_id = r.customer_id
+JOIN inventory AS i ON r.inventory_id = i.inventory_id
+JOIN film AS f ON i.film_id = f.film_id
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS ca ON fc.category_id = ca.category_id
+WHERE c.first_name = 'PATRICA' AND c.last_name = 'JOHNSON'
+GROUP BY category_name
+ORDER BY rental_count DESC
+LIMIT 3
+
+Output : 
+first_name	last_name	category	count
+
+/*
+ This query joins the customer, rental, inventory, film, film_category,
+ and category tables, filters the rentals to only those made by "PATRICA JOHNSON",
+ groups the rentals by category name, and orders the results by rental count in 
+ descending order.The LIMIT 3 statement ensures that only the top 3 categories are returned.
+
+ If Patrica Johnson hasn't rented any movies, the query won't return any results.
+*/
+-------------------------------------------------------------------------------
+
+5)Find out the number of R rated movies rented by "SUSAN WILSON"
+
+SELECT COUNT(*) 
+FROM customer c 
+JOIN rental r ON c.customer_id = r.customer_id 
+JOIN inventory i ON r.inventory_id = i.inventory_id 
+JOIN film f ON i.film_id = f.film_id 
+WHERE c.first_name = 'SUSAN' 
+  AND c.last_name = 'WILSON' 
+  AND f.rating = 'R'
+
+Output : 3
+
+/*
+  This query first selects the customer with the first name 'SUSAN' and last name
+  'WILSON' from the customer table, and then joins the rental, inventory, and 
+  film tables to find all the R rated movies that were rented by this customer.
+  Finally, it counts the number of rows returned by the query.
+*/
+-------------------------------------------------------------------------------
