@@ -1,0 +1,69 @@
+5)Design a database schema for a movie and tv series database using the E-R model 
+ and design tables accordingly using the relationship model.
+ The necessary information is given below :
+
+Entities : Movie, Actors, TV series
+A TV series or a movie must have an actor. An actor can act in both.
+
+Assume columns accordingly and mention primary keys, weak and strong entities.
+
+Submit a text entry or file upload or github url pointing the code.
+
+Based on the given information, we can design a database schema for a movie and
+TV series database using the Entity-Relationship (E-R) model. 
+Here's the schema along with the necessary tables:
+
+Entities:
+1. Movie
+2. Actor
+3. TV Series
+
+Primary Keys:
+1. Movie_ID (Primary Key for Movie)
+2. Actor_ID (Primary Key for Actor)
+3. Series_ID (Primary Key for TV Series)
+
+Strong Entity:
+1. Movie
+2. Actor
+3. TV Series
+
+Weak Entity:
+None
+
+Attributes:
+Movie (Movie_ID, Movie_Title, Release_Date, Genre, ...)
+Actor (Actor_ID, Actor_Name, Date_of_Birth, Gender, ...)
+TV Series (Series_ID, Series_Title, Release_Date, Genre, ...)
+
+Relationships:
+1. A TV series or a movie must have an actor. An actor can act in both.
+   - Act (Actor_ID, Movie_ID, Series_ID)
+
+Table Designs:
+
+Movie Table:
+Movie_ID (Primary Key)
+Movie_Title
+Release_Date
+Genre
+
+Actor Table:
+Actor_ID (Primary Key)
+Actor_Name
+Date_of_Birth
+Gender
+
+TV Series Table:
+Series_ID (Primary Key)
+Series_Title
+Release_Date
+Genre
+
+
+Relationship Tables:
+
+Act Table:
+Actor_ID (Foreign Key referencing Actor.Actor_ID)
+Movie_ID (Foreign Key referencing Movie.Movie_ID)
+Series_ID (Foreign Key referencing TV Series.Series_ID)
