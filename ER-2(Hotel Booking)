@@ -1,0 +1,67 @@
+2)Design a database schema for a hotel booking agency using the E-R model and
+ design tables accordingly using the relationship model.
+ The necessary information is given below :
+
+Entities : Hotel, Customer
+Customer can be first time user or loyal customer.
+Customer can book from only only hotel at a time. A hotel can have many customers.
+
+Assume columns accordingly and mention primary keys, weak and strong entities.
+
+Submit a text entry or file upload or github url pointing the code.
+
+Based on the given information, we can design a database schema for a hotel 
+booking agency using the Entity-Relationship (E-R) model.
+ Here's the schema along with the necessary tables:
+
+Entities:
+1. Hotel
+2. Customer
+
+Primary Keys:
+1. Hotel_ID (Primary Key for Hotel)
+2. Customer_ID (Primary Key for Customer)
+
+Strong Entity:
+1. Hotel
+
+Weak Entity:
+1. Customer
+
+Attributes:
+Hotel (Hotel_ID, Hotel_Name, Location, Number_of_Rooms, ...)
+Customer (Customer_ID, First_Name, Last_Name, Phone_Number, Email, ...)
+
+Relationships:
+1. Customer can book from only one hotel at a time. A hotel can have many customers.
+   - Book (Hotel_ID, Customer_ID)
+
+2. Customer can be a first-time user or a loyal customer.
+   - Customer_Type (Customer_ID, Customer_Type)
+
+Table Designs:
+
+Hotel Table:
+Hotel_ID (Primary Key)
+Hotel_Name
+Location
+Number_of_Rooms
+... (Other hotel-related attributes)
+
+Customer Table:
+Customer_ID (Primary Key)
+First_Name
+Last_Name
+Phone_Number
+Email
+... (Other customer-related attributes)
+
+Relationship Tables:
+
+Book Table:
+Hotel_ID (Foreign Key referencing Hotel.Hotel_ID)
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+
+Customer_Type Table:
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+Customer_Type
