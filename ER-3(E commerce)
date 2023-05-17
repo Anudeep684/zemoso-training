@@ -1,0 +1,90 @@
+3)Design a database schema for an e-commerce app using the E-R model and 
+ design tables accordingly using the relationship model. 
+ The necessary information is given below :
+
+Entities : Supplier, Customer, Items, Order
+Every item should correspond to a supplier. One supplier can have more than one items.
+A customer can have one order at the same time. One order can have multiple items from multiple brands.
+
+Assume columns accordingly and mention primary keys, weak and strong entities.
+
+Submit a text entry or file upload or a github url pointing the code.
+
+
+Entities:
+1. Supplier
+2. Customer
+3. Item
+4. Order
+
+Primary Keys:
+1. Supplier_ID (Primary Key for Supplier)
+2. Customer_ID (Primary Key for Customer)
+3. Item_ID (Primary Key for Item)
+4. Order_ID (Primary Key for Order)
+
+Strong Entity:
+1. Supplier
+2. Customer
+3. Item
+4. Order
+
+Weak Entity:
+None
+
+Attributes:
+Supplier (Supplier_ID, Supplier_Name, Contact_Number, Email, ...)
+Customer (Customer_ID, First_Name, Last_Name, Phone_Number, Email, ...)
+Item (Item_ID, Item_Name, Item_Description, Item_Price, ...)
+Order (Order_ID, Customer_ID, Order_Date, Total_Price, ...)
+
+Relationships:
+1. Every item should correspond to a supplier. 
+   One supplier can have more than one item.
+   - Supply (Supplier_ID, Item_ID)
+
+2. A customer can have one order at the same time. 
+   One order can have multiple items from multiple brands.
+   - Buy (Order_ID, Customer_ID, Item_ID)
+
+Table Designs:
+
+Supplier Table:
+Supplier_ID (Primary Key)
+Supplier_Name
+Contact_Number
+Email
+... (Other supplier-related attributes)
+
+Customer Table:
+Customer_ID (Primary Key)
+First_Name
+Last_Name
+Phone_Number
+Email
+... (Other customer-related attributes)
+
+Item Table:
+Item_ID (Primary Key)
+Item_Name
+Item_Description
+Item_Price
+... (Other item-related attributes)
+
+Order Table:
+Order_ID (Primary Key)
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+Order_Date
+Total_Price
+... (Other order-related attributes)
+
+Relationship Tables:
+
+Supply Table:
+Supplier_ID (Foreign Key referencing Supplier.Supplier_ID)
+Item_ID (Foreign Key referencing Item.Item_ID)
+
+Buy Table:
+Order_ID (Foreign Key referencing Order.Order_ID)
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+Item_ID (Foreign Key referencing Item.Item_ID)
