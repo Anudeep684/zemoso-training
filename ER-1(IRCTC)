@@ -1,0 +1,81 @@
+1)Design a database schema for railway ticket booking using the E-R model and 
+design tables accordingly using the relationship model.
+The necessary information is given below :
+
+Entities : Train, Ticket, Customer
+Ticket can be reserved or unreserved.
+Each reserved ticket must correspond to a train and a customer.
+Each unreserved ticket must correspond to a customer.
+A customer cannot be in two trains at the same time.
+Assume columns accordingly and mention primary keys, weak and strong entities.
+
+Based on the given information, we can design a database schema for railway ticket booking 
+using the Entity-Relationship (E-R) model. 
+Here's the schema along with the necessary tables:
+
+Entities:
+1. Train
+2. Ticket
+3. Customer
+
+Primary Keys:
+1. Train_ID (Primary Key for Train)
+2. Ticket_ID (Primary Key for Ticket)
+3. Customer_ID (Primary Key for Customer)
+
+Strong Entity:
+1. Train
+2. Customer
+
+Weak Entity:
+1. Ticket
+
+Attributes:
+Train (Train_ID, Train_Name, Start_Station, End_Station, ...)
+Ticket (Ticket_ID, Ticket_Type, Price, ...)
+Customer (Customer_ID, Customer_Name, Email, Phone_Number, ...)
+
+Relationships:
+1. Each reserved ticket must correspond to a train and a customer.
+   - Reserve (Ticket_ID, Train_ID, Customer_ID)
+2. Each unreserved ticket must correspond to a customer.
+   - Unreserve (Ticket_ID, Customer_ID)
+3. A customer cannot be in two trains at the same time.
+   - Book (Customer_ID, Train_ID)
+
+Table Designs:
+
+Train Table:
+Train_ID (Primary Key)
+Train_Name
+Start_Station
+End_Station
+... (Other train-related attributes)
+
+Ticket Table:
+Ticket_ID (Primary Key)
+Ticket_Type
+Price
+... (Other ticket-related attributes)
+
+Customer Table:
+Customer_ID (Primary Key)
+Customer_Name
+Email
+Phone_Number
+... (Other customer-related attributes)
+
+Relationship Tables:
+
+Reserve Table:
+Ticket_ID (Foreign Key referencing Ticket.Ticket_ID)
+Train_ID (Foreign Key referencing Train.Train_ID)
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+
+Unreserve Table:
+Ticket_ID (Foreign Key referencing Ticket.Ticket_ID)
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+
+Book Table:
+Customer_ID (Foreign Key referencing Customer.Customer_ID)
+Train_ID (Foreign Key referencing Train.Train_ID)
