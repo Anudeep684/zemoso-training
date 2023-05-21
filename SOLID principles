@@ -1,0 +1,191 @@
+//SOLID Principles:
+    SOLID is an acronym that represents a set of principles for software development.
+->These principles were introduced by Robert C. Martin (also known as Uncle Bob).
+->These principles are widely regarded as best practices for writing clean, maintainable, and scalable code.
+
+Each letter in the SOLID acronym represents a specific principle:
+1)S : Single Responsibility Principle (SRP)
+
+2)O : Open-Closed Principle (OCP)
+
+3)L : Liskov Substitution Principle (LSP)
+
+4)I : Interface Segregation Principle (ISP)
+
+5)D : Dependency Inversion Principle (DIP)
+
+
+Explanation:
+1)S : Single Responsibility Principle (SRP)
+    This principle states that "a class should have only a single responsibility like only one primary purpose or task or Functionality"
+->This is done since the implementation of multiple functionalities in a single class mashup the code and if any modification is required, then it may affect the whole class.
+
+2)O : Open-Closed Principle (OCP)
+    The Open-Closed principle states that "software entities (classes, modules, functions) should be open for extension but closed for modification."
+->This means that you should be able to add new functionality or behaviors to a system without modifying the existing code.
+->This principle promotes the use of abstractions, interfaces, and inheritance to achieve this goal.
+
+3)L : Liskov Substitution Principle (LSP)
+    Liskov Substitution Principle (LSP) states that "the derived classes(Child class) must be substitutable with their base classes(Parent Class)".
+->In other words, if class A is a subtype of class B, then we should be able to replace B with A without interrupting the behavior of the program.
+
+4)I : Interface Segregation Principle (ISP)
+    Interface Segregation Principle(ISP) states that "larger interfaces split into smaller ones & clients should not be forced to depend on interfaces they do not use".
+->The goal of the "Interface Segregation Principle" is similar to the Single Responsibility Principle(SRP).
+
+5)D : Dependency Inversion Principle (DIP)
+    The Dependency Inversion Principle(DIP) states that high-level modules should not depend on low-level modules; both should depend on abstractions.
+->The principle states that we must use abstraction (abstract classes and interfaces) instead of concrete implementations.
+
+Assignment:
+Develop a single Real Time example that complies to all Solid Principles.
+Also have the same example with violations of SOLID.
+
+Develop a simple Real Time example that complies to all Solid Principles and then have the same example with violations of those principles
+
+Example complying with SOLID principles:
+"Real Time example" of chat application:
+
+public interface MessageSender
+{
+  void sendMessage(String message);
+}
+
+public class ChatService
+{
+  private MessageSender messageSender;
+  public ChatService(MessageSender messageSender)
+  {
+    this.messageSender = messageSender;
+  }
+  
+        public void sendMessageToUser(String userId, String message)
+  {
+          // Code to retrieve user's contact information using userId
+        // Code to format the message
+     messageSender.sendMessage(message);
+    }
+}
+
+public class EmailMessageSender implements MessageSender
+{
+   public void sendMessage(String message)
+  {
+    // Code to send an email with the message
+  }
+}
+
+public class SMSMessageSender implements MessageSender
+{
+  public void sendMessage(String message)
+  {
+    // Code to send an SMS with the message
+  }
+}
+
+public class Main
+{
+   public static void main(String[] args)
+   {
+     MessageSender messageSender = new EmailMessageSender();
+     ChatService chatService = new ChatService(messageSender);
+     chatService.sendMessageToUser("123", "Hello, how are you?");
+   }
+}
+
+-------------------------------------------------------------------------------------------
+Here, there is 1 interface & 4 classes
+Interfaces:
+1)MessageSender:
+    An interface that defines the contract for sending messages.
+
+Classes:
+1)ChatService:
+     A class that represents the chat service and provides the functionality to send messages to users. It depends on the MessageSender interface.
+2)EmailMessageSender:
+     A class that implements the MessageSender interface and provides the implementation for sending messages via email.
+3)SMSMessageSender:
+     A class that implements the MessageSender interface and provides the implementation for sending messages via SMS.
+4)Main:
+   The main class that contains the main method to demonstrate the usage of the chat service.
+-------------------------------------------------------------------------------------------
+
+1)Single Responsibility Principle (SRP):
+    This principle states that "a class should have only a single responsibility like only one primary purpose or task or Functionality"
+->The 'MessageSender' interface has a single responsibility for sending messages.
+->The 'EmailMessageSender' and 'SMSMessageSender' classes implement this interface, each responsible for sending messages via their respective methods (email or SMS).
+
+2)Open/Closed Principle (OCP):
+    The Open-Closed principle states that "software entities (classes, modules, functions) should be open for extension but closed for modification."
+->Here, the entity  'ChatService' class is open for extension but closed for modification.
+
+3)Liskov Substitution Principle (LSP):
+    Liskov Substitution Principle (LSP) states that "the Base class(Parent Class) must be substituted with its derived classes(Child class) ".
+->Here, the interface 'MessageSender' can be substituted with the classes 'EmailMessageSender' and 'SMSMessageSender'
+->The EmailMessageSender and SMSMessageSender classes both implement the MessageSender interface, by the sendMessage() method.
+
+4)Interface Segregation Principle (ISP):
+    Interface Segregation Principle(ISP) states that "larger interfaces split into smaller ones & clients should not be forced to depend on interfaces they do not use".
+->The MessageSender interface contains only the necessary method sendMessage(), specific to message sending functionality.
+->It adheres to the ISP by including only the required method for message-related functionality.
+
+5)Dependency Inversion Principle (DIP):
+    The Dependency Inversion Principle(DIP) states that high-level modules should not depend on low-level modules; both should depend on abstractions.
+->The principle states that we must use abstraction (abstract classes and interfaces) instead of concrete implementations.
+
+Here, the 'ChatService' class depends on the abstraction (MessageSender interface) rather than concrete implementations. 
+------------------------------------------------------------------------------------------------------
+Example violating SOLID principles:
+
+public class ChatService
+{
+  public void sendMessageToUser( String message, String sendMethod)
+    {
+    if (sendMethod.equals("email"))
+     {
+      // Code to send an email with the message
+    }
+    else if (sendMethod.equals("sms"))
+     {
+      // Code to send an SMS with the message
+    }
+                      
+    // Code to retrieve user's contact information using userId
+    // Code to format the message
+   }
+  
+  public void retrieveUserId(String userId)
+  {
+    //code to retrieve
+  }
+}
+
+public class Main
+{
+  public static void main(String[] args)
+   {
+    ChatService chatService = new ChatService();
+    chatService.sendMessageToUser( "Hello, how are you?", "email");
+    chatService.retrieveUserId("123");
+  }
+}
+------------------------------------------------------------------------------------------------------
+In this example, the code violates the SOLID principles:
+
+1)Single Responsibility Principle (SRP):
+    The 'ChatService' class has taken the responsibility of sending messages, retrieving user information.
+It violates SRP by handling multiple responsibilities.
+
+2)Open/Closed Principle (OCP):
+    The 'ChatService' class is not closed for modification as it needs to be modified whenever a new message sending method or additional functionalities are added. It violates OCP.
+
+3)Liskov Substitution Principle (LSP):
+    There are no explicit classes violating LSP in this example. However, the violation of other principles affects LSP indirectly.
+
+4)Interface Segregation Principle (ISP):
+    There are no interfaces in this example, but the violation of SRP affects ISP indirectly.
+
+5)Dependency Inversion Principle (DIP):
+     The 'ChatService' class directly depends on concrete sending methods (email and sms) instead of abstractions.
+------------------------------------------------------------------------------------------------------
+
