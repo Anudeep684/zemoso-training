@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="restaurant.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+
+        </style>
+</head>
+
+<body>
+    <div class="main_body">
+        <div class="table">
+            <p class="heading">Tables</p>
+            <input id="tablesearch" type="text" name="search" placeholder="Search table">
+            <main>
+                <button class="table-item">
+                    <p class="table_heading">Table-1</p>
+                    <div class="table_details" id="0">
+                        <p>total : <span class="amount">0</span></p>
+                        <p>Items : <span class="items">0</span></p>
+                    </div>
+
+                </button>
+                <button class="table-item">
+                    <p class="table_heading">Table-2</p>
+                    <div class="table_details" id="1">
+                        <p>total : <span class="amount">0</span></p>
+                        <p>Items : <span class="items">0</span></p>
+                    </div>
+                </button>
+                <button class="table-item">
+                    <p class="table_heading">Table-3</p>
+                    <div class="table_details" id="2">
+                        <p>total : <span class="amount">0</span></p>
+                        <p>Items : <span class="items">0</span></p>
+                    </div>
+                </button>
+            </main>
+        </div>
+        <div class="menu">
+            <p class="heading">Menu</p>
+            <input id="menusearch" type="text" placeholder="search for dish">
+            <main>
+                <div class="menu_items maincourse" id="paneerbiriyani" draggable="true">
+                    <div class="item-name">Paneer Biriyani</div>
+                    <div><span>250</span></div>
+                </div>
+                <div class="menu_items maincourse" id="mushroombiriyani" draggable="true">
+                    <div class="item-name">Mushroom Biriyani</div>
+                    <div><span>350</span></div>
+                </div>
+                <div class="menu_items maincourse" id="paneerfriedrice" draggable="true">
+                    <div class="item-name">Paneer Friedrice</div>
+                    <div><span>450</span></div>
+                </div>
+                <div class="menu_items starters" id="mushroomfriedrice" draggable="true">
+                    <div class="item-name">Mushroom Friedrice</div>
+                    <div><span>260</span></div>
+                </div>
+                <div class="menu_items starters" id="paneermunchurian" draggable="true">
+                    <div class="item-name">Paneer Munchurian</div>
+                    <div><span>240</span></div>
+                </div>
+                <div class="menu_items starters" id="mushroommunchurian" draggable="true">
+                    <div class="item-name">Mushroom Munchurian</div>
+                    <div><span>280</span></div>
+                </div>
+                <div class="menu_items starters" id="chocolatethickshake" draggable="true">
+                    <div class="item-name">Chocolate Thickshake</div>
+                    <div><span>190</span></div>
+                </div>
+                <div class="menu_items drinks" id="vanillathickshake" draggable="true">
+                    <div class="item-name">Vanilla Thickshake</div>
+                    <div><span>100</span></div>
+                </div>
+                <div class="menu_items drinks" id="strawberrythickshake" draggable="true">
+                    <div class="item-name">Strawberry Thickshake</div>
+                    <div><span>80</span></div>
+                </div>
+                <div class="menu_items drinks" id="butterscotchthickshake" draggable="true">
+                    <div class="item-name">Butterscotch Thickshake</div>
+                    <div><span>100</span></div>
+                </div>
+                <div class="menu_items drinks" id="chocolatemilkshake" draggable="true">
+                    <div class="item-name">Chocolate Milkshake</div>
+                    <div><span>100</span></div>
+                </div>
+                <div class="menu_items rice" id="vanillamilkshake" draggable="true">
+                    <div class="item-name">Vanilla Milkshake</div>
+                    <div><span>140</span></div>
+                </div>
+                <div class="menu_items rice" id="strawberrymilkshake" draggable="true">
+                    <div class="item-name">Strawberry Milkshake</div>
+                    <div><span>160</span></div>
+                </div>
+                <div class="menu_items rice" id="butterscotchmilkshake" draggable="true">
+                    <div class="item-name">Butterscotch Milkshake</div>
+                    <div><span>260</span></div>
+                </div>
+            </main>
+            <div class="modal hide" style="overflow-x: auto;">
+                <button class="close-modal">&times;</button>
+                <table id="table" class="modal-container">
+                    <tr>
+                        <th>S No</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="overlay hide"></div>
+        </div>
+    </div>
+    <script src="drag_drop.js"></script>
+    <script src="initializtion.js"></script>
+    <script src="window_modal.js"></script>
+</body>
+
+</html>
